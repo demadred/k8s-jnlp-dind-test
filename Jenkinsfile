@@ -7,6 +7,9 @@ podTemplate(label: 'jenkins-pipeline', containers: [
 ],
 volumes:[
     hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
+],
+envVars: [
+    envVar(key: 'JNLP_PROTOCOL_OPTS', value: '-Dorg.jenkinsci.remoting.engine.JnlpProtocol3.disabled=false')
 ]) {
     node ('jenkins-pipeline') {
         stage 'Run a docker thing'
